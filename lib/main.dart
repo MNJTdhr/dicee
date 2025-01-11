@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 void main() {
   return runApp(
@@ -6,8 +7,21 @@ void main() {
   );
 }
 
-class MyWidget extends StatelessWidget {
+class MyWidget extends StatefulWidget {
   const MyWidget({super.key});
+
+  @override
+  State<MyWidget> createState() => _MyWidgetState();
+}
+
+class _MyWidgetState extends State<MyWidget> {
+  int diceFace1 = 1; //initial value
+  int diceFace2 = 1; //before build methood
+
+  void rollBothDice() {
+    diceFace1 = Random().nextInt(6) + 1;
+    diceFace2 = Random().nextInt(6) + 1;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,23 +44,57 @@ class MyWidget extends StatelessWidget {
             ),
           ),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Row(
                 children: [
                   Expanded(
-                    flex: 1,
-                    child: Image.asset(
-                      "assets/images/dice1.png",
+                    child: TextButton(
+                      onPressed: () {
+                        setState(
+                          () {
+                            diceFace1 = Random().nextInt(6) + 1;
+                          },
+                        );
+                      },
+                      child: Image.asset(
+                        "assets/images/dice$diceFace1.png",
+                      ),
                     ),
                   ),
                   Expanded(
-                    flex: 1,
-                    child: Image.asset(
-                      "assets/images/dice2.png",
+                    child: TextButton(
+                      onPressed: () {
+                        setState(() {
+                          diceFace2 = Random().nextInt(6) + 1;
+                        });
+                      },
+                      child: Image.asset(
+                        "assets/images/dice$diceFace2.png",
+                      ),
                     ),
                   ),
                 ],
-              )
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              FloatingActionButton.extended(
+                onPressed: () {
+                  setState(
+                    () {
+                      rollBothDice();
+                    },
+                  );
+                },
+                label: Text(
+                  "Roll both",
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
             ],
           ),
         ),

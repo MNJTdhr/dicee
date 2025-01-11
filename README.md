@@ -1,4 +1,4 @@
-# dice
+# two_dice
 
 A new Flutter project.
 
