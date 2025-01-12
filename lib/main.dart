@@ -36,7 +36,7 @@ class _MyWidgetState extends State<MyWidget> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Dicee"),
+          title: Text("Dice"),
           foregroundColor: Colors.white,
           backgroundColor: Colors.indigo,
         ),
