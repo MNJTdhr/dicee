@@ -17,10 +17,18 @@ class MyWidget extends StatefulWidget {
 class _MyWidgetState extends State<MyWidget> {
   int diceFace1 = 1; //initial value
   int diceFace2 = 1; //before build methood
+  int diceFace = 1;   //later
 
   void rollBothDice() {
+    //function that will be called
     diceFace1 = Random().nextInt(6) + 1;
     diceFace2 = Random().nextInt(6) + 1;
+  }
+
+  int rollSingleDice() {
+    //will work on later
+    diceFace = Random().nextInt(6) + 1;
+    return diceFace;
   }
 
   @override
